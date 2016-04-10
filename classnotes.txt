@@ -1,0 +1,80 @@
+localhost 3001
+
+my_blog day 2
+
+creating models:
+
+Here are a summary of suggested fields and validations (feel free to add to those):
+
+- Post: title(required & unique), body
+- Comment: body (required & unique per blog post)
+- Category: title(required)
+- Contact: email, name, subject and message
+
+(use 'text' for large text areas, 'stirng' for short text areas)
+
+bin/rails g model post title:string body:text
+
+bin/rails g model comment body:text
+
+bin/rails g model category title:string
+
+bin/rails g model contact email:string name:string subject:string message:text
+
+**after creating the models in the console do db migrate:
+
+bin/rake db:migrate
+
+******************************************************************************************************************
+PM Tool
+localhost 3002
+
+Build four of your main models: project, task, discussion and comment (don't worry about associations yet, will add those later).
+
+Here are a summary of suggested fields and validations (feel free to add to those)
+- Project: title(required & unique), description and due_date
+- Task: title (required & unique within a project) and due_date
+- Discussion: title(required), description
+- Comment: body(required)
+
+
+bin/rails g model project title:stirng description:string due_date:timestamps
+bin/rails g model task title:string due_date:timestamps
+bin/rails g model discussion title:string description:text
+bin/rails g model comment body:text
+
+************************************************************************************************
+
+bin/rails g controller posts
+to create the necessary folders
+
+routes.db
+
+resources :posts
+
+controllers >> posts_controller.rb
+
+def new
+  @post = Post.new
+end
+
+def index
+  @posts = Post.all
+end
+
+views >> layout >> application.html.erb >> 
+
+<%= link_to "All Posts", posts_path %>
+
+posts >> index.html.erb
+
+<h1>All Posts</h1>
+
+<% @posts.each do |post| %>
+
+<div>
+  <%= link_to post.title, post_path(post) %>
+</div>
+
+<% end %>
+
