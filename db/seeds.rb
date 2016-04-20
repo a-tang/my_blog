@@ -5,3 +5,23 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
+10.times do
+  Category.create(name: Faker::Hacker.adjective)
+end
+
+categories = Category.all
+
+100.times do
+  q = Post.create     title:      Faker::Company.bs,
+                      body:       Faker::Lorem.paragraph,
+                      category:   categories.shuffle.first
+                      user_id:    
+    10.times do
+      random = rand(20)
+      if random < 10
+        q.comments.create(body: Faker::StarWars.quote)
+      else
+        q.comments.create(body: Faker::ChuckNorris.fact)
+      end
+    end
+ end

@@ -1,4 +1,26 @@
 <h1><%= @post.title %></h1>
 <p><%= @post.body %></p>
-<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure you want to delete this post?"} %> |
+<p><%= @post.created_at %></p>
+<p>Created By: <%= @post.user_full_name.titleize %></p>
+
+<% if can? :edit, @post %>
 <%= link_to "Edit", edit_post_path(@post) %>
+<% end %>
+<% if can? :destroy, @question %>
+<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure"} %>
+<% end %>
+
+<%= @comment.errors.full_messages.join(", ") %>
+<%= form_for [@post, @comment] do |f| %>
+  <%= f.text_area :body %>
+  <%= f.submit %>
+<% end %>
+
+<% @post.comments.each do |ans| %>
+  <%= ans.body %>
+  by: <%= ans.user_full_name.titleize %>
+    <% if can? :destroy, ans %>
+  <%= link_to "Delete Comment", [@post, ans], method: :delete, data: {confirm: "Are you sure?"} %>
+  <% end %>
+  <hr>
+  <% end %>
