@@ -66,5 +66,9 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
     params.require(:post).permit([:title, :body, :category_id])
   end
 
+  def user_favourite
+    @user_favourite ||= @post.favourite_for(current_user)
+  end
+  helper_method :user_favourite
 
 end

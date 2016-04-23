@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160420013000) do
+ActiveRecord::Schema.define(version: 20160423063442) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -41,6 +41,26 @@ ActiveRecord::Schema.define(version: 20160420013000) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "favourites", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "favourites", ["post_id"], name: "index_favourites_on_post_id", using: :btree
+  add_index "favourites", ["user_id"], name: "index_favourites_on_user_id", using: :btree
+
+  create_table "likes", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "post_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likes", ["post_id"], name: "index_likes_on_post_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.text     "title"
     t.text     "body"
@@ -60,8 +80,13 @@ ActiveRecord::Schema.define(version: 20160420013000) do
     t.datetime "created_at",                      null: false
     t.datetime "updated_at",                      null: false
     t.boolean  "admin",           default: false
+    t.string   "reset_digest"
   end
 
   add_foreign_key "comments", "users"
+  add_foreign_key "favourites", "posts"
+  add_foreign_key "favourites", "users"
+  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "users"
   add_foreign_key "posts", "users"
 end

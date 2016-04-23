@@ -3,6 +3,7 @@ before_action :authenticate_user!
 before_action :find_post
 before_action :find_and_authorize_comment, only: :destroy
 
+
   def create
     @post             = Post.find params[:post_id]
     comment_params    = params.require(:comment).permit(:body)
@@ -47,7 +48,7 @@ before_action :find_and_authorize_comment, only: :destroy
   end
 
   def find_and_authorize_comment
-    
+
 	# head will stop the HTTP request and send a response code depending on the
 	# symbole (first argument) that you pass in.
 	# head :unauthorized unless can? :destroy, @answer

@@ -14,6 +14,15 @@ class Ability
       (ans.post.user == user || ans.user == user) && user.persisted?
     end
 
+    can :favourite, Post do |q|
+      # user can't favourite their own posts
+      q.user != user
+    end
+
+    can :destroy, Favourite do |l|
+      l.user == user
+    end
+
     can :manage, :all if user.admin?
 
     # Define abilities for the passed in user here. For example:

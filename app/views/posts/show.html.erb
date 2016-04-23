@@ -6,7 +6,7 @@
 <% if can? :edit, @post %>
 <%= link_to "Edit", edit_post_path(@post) %>
 <% end %>
-<% if can? :destroy, @question %>
+<% if can? :destroy, @post %>
 <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure"} %>
 <% end %>
 
@@ -15,7 +15,15 @@
   <%= f.text_area :body %>
   <%= f.submit %>
 <% end %>
+||
 
+<% if user_favourite %>
+  <%= link_to "Un-Fave", post_favourite_path(@post, user_favourite), method: :delete %>
+<% else %>
+  <%= link_to "Favourite", post_favourites_path(@post), method: :post %>
+<% end %>
+
+||
 <% @post.comments.each do |ans| %>
   <%= ans.body %>
   by: <%= ans.user_full_name.titleize %>

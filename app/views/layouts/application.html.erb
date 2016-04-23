@@ -18,13 +18,17 @@
 |
 <%= link_to "All Posts", posts_path %>
 |
+
   <% if user_signed_in? %>
-  Hello <%= current_user.first_name %>,
+  Hello
+  <%= link_to current_user.full_name.titleize, edit_user_path(current_user) %>,
+|
     <%= link_to "Log out", sessions_path, method: :delete %>
   <% else %>
     <%= link_to "Sign In", new_session_path %>
     |
     <%= link_to "Sign Up", new_user_path %>
+    |
   <% end %>
 <hr>
 
