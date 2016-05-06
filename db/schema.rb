@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160423063442) do
+ActiveRecord::Schema.define(version: 20160506012251) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -61,6 +61,16 @@ ActiveRecord::Schema.define(version: 20160423063442) do
   add_index "likes", ["post_id"], name: "index_likes_on_post_id", using: :btree
   add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
+  create_table "likings", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "comment_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  add_index "likings", ["comment_id"], name: "index_likings_on_comment_id", using: :btree
+  add_index "likings", ["user_id"], name: "index_likings_on_user_id", using: :btree
+
   create_table "posts", force: :cascade do |t|
     t.text     "title"
     t.text     "body"
@@ -77,10 +87,12 @@ ActiveRecord::Schema.define(version: 20160423063442) do
     t.string   "last_name"
     t.string   "email"
     t.string   "password_digest"
-    t.datetime "created_at",                      null: false
-    t.datetime "updated_at",                      null: false
-    t.boolean  "admin",           default: false
+    t.datetime "created_at",                                  null: false
+    t.datetime "updated_at",                                  null: false
+    t.boolean  "admin",                       default: false
     t.string   "reset_digest"
+    t.string   "password_reset_token"
+    t.datetime "password_reset_requested_at"
   end
 
   add_foreign_key "comments", "users"
@@ -88,5 +100,7 @@ ActiveRecord::Schema.define(version: 20160423063442) do
   add_foreign_key "favourites", "users"
   add_foreign_key "likes", "posts"
   add_foreign_key "likes", "users"
+  add_foreign_key "likings", "comments"
+  add_foreign_key "likings", "users"
   add_foreign_key "posts", "users"
 end

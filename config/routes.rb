@@ -1,6 +1,9 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+
+  resources :password_resets, only: [:new, :create, :edit, :update]
+  
   root "home#home", as: :home
   get "/home" => "home#home"
   get "/about" => "home#about", as: :about_us

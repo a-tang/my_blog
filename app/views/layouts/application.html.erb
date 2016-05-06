@@ -6,35 +6,64 @@
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
 </head>
-<body>
 
-<%= link_to "Home", home_path %>
-|
-<%= link_to "About", about_us_path %>
-|
-<%= link_to "Create Post", new_post_path %>
-|
-<%= link_to "All Posts", posts_path %>
-|
+  <body data-spy="scroll" data-target=".navbar" data-offset="50">
+    <div id="about" class="jumbotron text-center bg-orange">
 
-  <% if user_signed_in? %>
-  Hello
-  <%= link_to current_user.full_name.titleize, edit_user_path(current_user) %>,
-|
-    <%= link_to "Log out", sessions_path, method: :delete %>
-  <% else %>
-    <%= link_to "Sign In", new_session_path %>
-    |
-    <%= link_to "Sign Up", new_user_path %>
-    |
-  <% end %>
-<hr>
+      <h1>Welcome to my Blog</h1>
+      <p>A blog about stuff</p>
+      <form>
+        <label>Subscribe to our newsletter:</label><br>
+        <input type="email" placeholder="e.g. john@doe.com">
+        <input class="btn btn-danger" type="submit" value="Subscribe">
+      </form>
+    </div>
+    <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#about">Toggle</button>
+
+    <div class="container">
+    <!-- bootstrap navbar -->
+      <nav class="navbar navbar-fixed-top navbar-inverse">
+        <div class="container">
+            <!-- <div class="navbar-header"> -->
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+              <span class="sr-only">Toggle navigation</span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+              <span class="icon-bar"></span>
+            <!-- logo and company name -->
+            </button>
+
+            <a class="navbar-left" href="#">
+              <span class="glyphicon glyphicon-fire logo">
+                <a href="#" class="navbar-left company-name">My Awesome Blog</a>
+              <!--img class="logo-image" src="images/logo.png"-->
+              <div class="navbar-collapse collapse navbar-right">
+                <ul class="nav navbar-nav navbar-right">
+            <!-- navigation items -->
+              <li><%= link_to "Home", home_path %></li>
+              <li><%= link_to "About", about_us_path %></li>
+              <li><%= link_to "Create Post", new_post_path %></li>
+              <li><%= link_to "All Posts", posts_path %></li>
+              <% if user_signed_in? %>
+                <li><%= link_to "Hello #{current_user.full_name.titleize}", edit_user_path(current_user) %></li>
+                <li><%= link_to "Log out", sessions_path, method: :delete %></li>
+              <% else %>
+                <li><%= link_to "Sign In", new_session_path %></li>
+                <li><%= link_to "Sign Up", new_user_path %></li>
+              <% end %>
+            </ul>
+          </a>
+          </div>
+        </div>
+      </nav>
+
+
 
 <%= flash[:notice] || flash[:alert]%>
 
 <%= yield %>
-
-</body>
+    </div>
+  </body>
 </html>
