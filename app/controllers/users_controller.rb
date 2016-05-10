@@ -11,7 +11,12 @@ class UsersController < ApplicationController
     @user = User.new user_params
     if @user.save
       sign_in(@user)
-      redirect_to home_path, notice: "Account created!"
+      session[:user_id] = @user.id
+      # redirect_to home_path, notice: "Account created!"
+
+      @user.generate_account_verification_data
+      AccountVerificationsMailer.send_verification_instructions(@user).deliver_later
+      render "users/account_verifications/create"
     else
       render :new
     end

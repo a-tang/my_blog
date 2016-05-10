@@ -31,7 +31,17 @@ class User < ActiveRecord::Base
     password_reset_requested_at <= 60.minutes.ago
   end
 
-  private
+  def generate_account_verification_data
+    generate_account_verification_token
+    self.account_verification_requested_at = Time.now
+    save
+  end
+
+def generate_account_verification_token
+  begin
+    self.account_verification_token = SecureRandom.hex(32)
+  end while User.exists?(account_verification_token: self.account_verification_token)
+end
 
   def generate_password_reset_token
     begin

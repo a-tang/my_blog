@@ -10,17 +10,26 @@ before_action :find_and_authorize_comment, only: :destroy
     @comment          = Comment.new comment_params
     @comment.post     = @post
     @comment.user     = current_user
-    if @comment.save
-      redirect_to post_path(@post), notice: "Thanks for answering"
-    else
-      flash[:alert]   = "Not saved"
-      render "/posts/show"
+    respond_to do |format|
+      if @comment.save
+        # redirect_to post_path(@post), notice: "Thanks for answering"
+        format.html { redirect_to post_path(@post), notice: "Thanks for commenting" }
+        format.js { render :create_success }
+      else
+        flash[:alert]   = "Not saved"
+        # render "/posts/show"
+        format.html { render "/posts/show" }
+        format.js { render :create_failure }
+      end
     end
   end
 
   def destroy
     @comment.destroy
-    redirect_to post_path(@post), notice: "Comment deleted!"
+    respond_to do |format|
+      format.html { redirect_to post_path(@post), notice: "Comment deleted!" }
+      format.js { render }
+    end
   end
 
   def show

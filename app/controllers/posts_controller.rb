@@ -28,8 +28,13 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
   end
 
   def show
-    @post     = Post.find params[:id]
+    # @post     = Post.find params[:id]
     @comment  = Comment.new
+    respond_to do |format|
+      format.html { render } # render posts/show.html.erb
+      format.json { render json: @post.to_json }
+      format.xml  { render xml: @post.to_xml }
+    end
   end
 
   def edit
@@ -63,10 +68,11 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
 
 
   def post_params
-    params.require(:post).permit([:title, :body, :category_id])
+    params.require(:post).permit([:title, :body, :category_id, {tag_ids: []}])
   end
 
   def user_favourite
+    # byebug
     @user_favourite ||= @post.favourite_for(current_user)
   end
   helper_method :user_favourite

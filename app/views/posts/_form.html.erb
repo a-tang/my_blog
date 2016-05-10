@@ -6,18 +6,11 @@
   </ul>
 <% end %>
 
-<%= form_for @post do |f| %>
-  <div>
-    <%= f.label :title %>
-    <%= f.text_field :title %>
-  </div>
-  <div>
-    <%= f.label :body %>
-    <%= f.text_area :body %>
-  </div>
-  <div>
-    <%= f.label :category %>
-    <%= f.collection_select :category_id, Category.order(:name), :id, :name %>
-</div>
-  <%= f.submit %>
+<%= simple_form_for @post do |f| %>
+  <%= f.input :title, input_html: {class: "abc"}, label_html: {class: "hey"} %>
+  <%= f.input :body %>
+  <%= f.association :category %>
+  <%= f.association :tags, input_html: {class: "chosen-select"} %>
+  <%#= f.input :image %>
+  <%= f.submit class: "btn btn-primary" %>
 <% end %>
