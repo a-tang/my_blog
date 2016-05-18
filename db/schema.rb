@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160510060957) do
+ActiveRecord::Schema.define(version: 20160517132404) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -53,23 +53,13 @@ ActiveRecord::Schema.define(version: 20160510060957) do
 
   create_table "likes", force: :cascade do |t|
     t.integer  "user_id"
-    t.integer  "post_id"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-  end
-
-  add_index "likes", ["post_id"], name: "index_likes_on_post_id", using: :btree
-  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
-
-  create_table "likings", force: :cascade do |t|
-    t.integer  "user_id"
     t.integer  "comment_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
 
-  add_index "likings", ["comment_id"], name: "index_likings_on_comment_id", using: :btree
-  add_index "likings", ["user_id"], name: "index_likings_on_user_id", using: :btree
+  add_index "likes", ["comment_id"], name: "index_likes_on_comment_id", using: :btree
+  add_index "likes", ["user_id"], name: "index_likes_on_user_id", using: :btree
 
   create_table "posts", force: :cascade do |t|
     t.text     "title"
@@ -111,15 +101,20 @@ ActiveRecord::Schema.define(version: 20160510060957) do
     t.datetime "password_reset_requested_at"
     t.string   "account_verification_token"
     t.datetime "account_verification_requested_at"
+    t.string   "uid"
+    t.string   "provider"
+    t.string   "twitter_token"
+    t.string   "twitter_secret"
+    t.text     "twitter_raw_data"
   end
+
+  add_index "users", ["uid", "provider"], name: "index_users_on_uid_and_provider", using: :btree
 
   add_foreign_key "comments", "users"
   add_foreign_key "favourites", "posts"
   add_foreign_key "favourites", "users"
-  add_foreign_key "likes", "posts"
+  add_foreign_key "likes", "comments"
   add_foreign_key "likes", "users"
-  add_foreign_key "likings", "comments"
-  add_foreign_key "likings", "users"
   add_foreign_key "posts", "users"
   add_foreign_key "taggings", "posts"
   add_foreign_key "taggings", "tags"

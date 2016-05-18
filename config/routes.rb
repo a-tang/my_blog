@@ -1,12 +1,18 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
-
+  get "/auth/twitter", as: :sign_in_with_twitter
+  get "/auth/twitter/callback" => "callbacks#twitter"
   scope module: 'users' do
     # resources :password_changes, only: [:edit, :update]
     resources :account_verifications, only: [:new, :create, :edit]
   end
 
+  namespace :api, defaults: {format: :json} do
+    namespace :v1 do
+      resources :posts
+    end
+  end
 
   resources :password_resets, only: [:new, :create, :edit, :update]
 
@@ -22,8 +28,10 @@ Rails.application.routes.draw do
   resources :posts do
 
     resources :favourites, only: [:create, :destroy]
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create, :edit, :destroy, :update]
   end
+
+  resources :favourites, only: [:index]
 
   # You can have the root of your site routed with "root"
   # root 'welcome#index'

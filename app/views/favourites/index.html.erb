@@ -1,0 +1,9 @@
+<h1>Fav</h1>
+
+<% @favourites.each do |favourite| %>
+
+<div>
+<%= link_to favourite.post.title, post_path(favourite.post) %>
+</div>
+
+<% end %>

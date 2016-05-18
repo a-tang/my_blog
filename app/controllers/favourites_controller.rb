@@ -10,13 +10,17 @@ class FavouritesController < ApplicationController
     if favourite.save
       redirect_to post, notice: "Favourited!"
     else
-      redirect_to post, alert: "You're already liked!"
+      redirect_to post, alert: "You're already favourited!"
     end
+  end
+
+  def index
+    @favourites = current_user.favourites
   end
 
   def destroy
     favourite.destroy
-    redirect_to post_path(favourite.post_id), notice: "Un-liked!"
+    redirect_to post_path(favourite.post_id), notice: "Un-Favourite!"
   end
 
   private
@@ -36,4 +40,5 @@ class FavouritesController < ApplicationController
   def favourite
     @favourite ||= Favourite.find params[:id]
   end
+
 end

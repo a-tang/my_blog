@@ -40,15 +40,30 @@ before_action :find_and_authorize_comment, only: :destroy
     @comment = Comment.find params[:id]
   end
 
-  def udpate
+  def update
     @comment = Comment.find params[:id]
     comment_params = params.require(:comment).permit([:body])
-    if @comment.update comment_params
-      redirect_to comment_path(@comment)
-    else
-      render :edit
+      respond_to do |format|
+      if @comment.update comment_params
+        format.html { redirect_to comment_path(@comment), notice: "Thanks for commenting" }
+        format.js { render :update_success }
+      else
+        format.html { render "/comments/edit" }
+        format.js { render :update_failure }
+      end
     end
   end
+
+
+  # def update
+  #   @comment = Comment.find params[:id]
+  #   comment_params = params.require(:comment).permit([:body])
+  #   if @comment.update comment_params
+  #     redirect_to comment_path(@comment)
+  #   else
+  #     render :edit
+  #   end
+  # end
 
   private
 

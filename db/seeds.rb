@@ -11,11 +11,12 @@ end
 
 categories = Category.all
 
-100.times do
+50.times do
   q = Post.create     title:      Faker::Company.bs,
                       body:       Faker::Lorem.paragraph,
-                      category:   categories.shuffle.first
-                      user_id:    
+                      category:   categories.shuffle.first,
+                      user:       User.create(password: "password", password_confirmation: "password", first_name: Faker::StarWars.droid, last_name: Faker::StarWars.planet, email: Faker::Internet.email)
+
     10.times do
       random = rand(20)
       if random < 10

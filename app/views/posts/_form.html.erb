@@ -7,10 +7,10 @@
 <% end %>
 
 <%= simple_form_for @post do |f| %>
-  <%= f.input :title, input_html: {class: "abc"}, label_html: {class: "hey"} %>
+  <%= f.input :title %>
   <%= f.input :body %>
-  <%= f.association :category %>
-  <%= f.association :tags, input_html: {class: "chosen-select"} %>
+  <%#= f.association :category %>
+  <%= f.association :category, input_html: {class: "chosen-select"} %>
   <%#= f.input :image %>
   <%= f.submit class: "btn btn-primary" %>
 <% end %>

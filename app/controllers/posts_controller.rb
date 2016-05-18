@@ -9,11 +9,11 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
   def index
     @posts = Post.all
     if params[:search]
-        @posts = Post.search(params[:search]).order("created_at DESC")
-      else
-        @posts = Post.all.order('created_at DESC')
+      @posts = @posts.search(params[:search]).order("created_at DESC")
+    else
+      @posts = @posts.order('created_at DESC')
     end
-        @posts = Post.page(params[:page]).per(10)
+    @posts = @posts.page(params[:page]).per(10)
   end
 
   def create
@@ -72,7 +72,6 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
   end
 
   def user_favourite
-    # byebug
     @user_favourite ||= @post.favourite_for(current_user)
   end
   helper_method :user_favourite

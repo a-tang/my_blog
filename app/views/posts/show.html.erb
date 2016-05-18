@@ -11,12 +11,7 @@
 <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure"} %>
 <% end %>
 
-<%= @comment.errors.full_messages.join(", ") %>
-<%= form_for [@post, @comment] do |f| %>
-  <%= f.text_area :body %>
-  <%= f.submit %>
-<% end %>
-||
+
 
 <% if user_favourite %>
   <%= link_to "Un-Fave", post_favourite_path(@post, user_favourite), method: :delete %>
@@ -24,7 +19,6 @@
   <%= link_to "Favourite", post_favourites_path(@post), method: :post %>
 <% end %>
 
-||
 
 
 <div id="comment-form">
@@ -33,16 +27,13 @@
 
 <h2>Comments</h2>
 <div id="comments">
-  <% @post.comments.each do |ans| %>
-    <%= render "/comments/comment", comment: ans %>
-  <% end %>
+  <%= render "/comments/comments", comments: @post.comments %>
 </div>
 
-<% @post.comments.each do |ans| %>
-  <%= ans.body %>
-  by: <%= ans.user_full_name.titleize %>
-    <% if can? :destroy, ans %>
-  <%= link_to "Delete Comment", [@post, ans], method: :delete, data: {confirm: "Are you sure?"} %>
-  <% end %>
-  <hr>
-  <% end %>
+<!-- Modal -->
+<div class="modal fade" id="edit-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+</div>
+
+
+<!-- TODO : something --> 

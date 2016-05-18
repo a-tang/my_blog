@@ -24,10 +24,15 @@
  body {
    /* this will move the jumbotron down 50px to compensate for the top navigation */
    margin-top: 50px;
+   margin-bottom: 50px;
  }
  h1, h2 {
    padding-top: -50px;
    margin-top: 50px;
+ }
+
+ .jumbotron {
+  margin-bottom: 0px;
  }
  .company-name {
    margin-top: 10px;

@@ -3,9 +3,10 @@
   by: <%= comment.user_full_name.titleize %>
   <% if can? :destroy, comment %>
     <%= link_to "delete", post_comment_path(@post, comment),
+                          remote: true,
                           data: {confirm: "Are you sure?"},
                           method: :delete,
-                          remote: true %>
+                          class: "btn btn-primary btn-sm" %>
   <% end %>
   <% if can? :edit, comment %>
     <%= link_to "Edit", edit_post_comment_path(@post, comment),

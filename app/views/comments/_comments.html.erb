@@ -1,0 +1,3 @@
+<% comments.order("created_at desc").each do |ans| %>
+  <%= render "/comments/comment", comment: ans %>
+<% end %>

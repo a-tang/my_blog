@@ -5,10 +5,7 @@ class PasswordResetsController < ApplicationController
 
   def create
 
-    #puts ">>>>>>>>>>>>>>>>>>> #{params.inspect}"
-
     if params[:email] == ""
-      #puts ">>>>>>>>>>>>>>>>> email empty string"
       flash[:alert] = "Email should not be empty"
       render "new"
       return

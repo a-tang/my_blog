@@ -1,10 +1,14 @@
 source 'https://rubygems.org'
+
+gem 'omniauth-twitter'
+gem 'jquery-turbolinks'
 gem 'chosen-rails'
 gem 'cancancan'
 gem 'kaminari'
 gem 'simple_form'
 gem 'delayed_job_active_record'
 gem 'delayed_job_web'
+gem 'active_model_serializers'
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.6'
 # Use postgresql as the database for Active Record
