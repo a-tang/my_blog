@@ -11,7 +11,13 @@
 </head>
 
   <body data-spy="scroll" data-target=".navbar" data-offset="50">
+
     <div id="about" class="jumbotron text-center bg-orange">
+      <% if notice %>
+      <div class="alert alert-success"><%= notice %></div>
+      <% elsif alert %>
+      <div class="alert alert-danger"><%= alert %></div>
+      <% end %>
 
       <h1>Welcome to my Blog</h1>
       <p>A blog about stuff</p>
@@ -21,6 +27,7 @@
         <input class="btn btn-danger" type="submit" value="Subscribe">
       </form>
     </div>
+
     <button type="button" class="btn btn-info" data-toggle="collapse" data-target="#about">Toggle</button>
 
     <div class="container">
@@ -41,7 +48,7 @@
                 <a href="#" class="navbar-left company-name">My Awesome Blog</a>
               <!--img class="logo-image" src="images/logo.png"-->
               <div class="navbar-collapse collapse navbar-right">
-                <ul class="nav navbar-nav navbar pull-right text-center">
+                <ul class="nav navbar-nav navbar text-center">
             <!-- navigation items -->
               <li><%= link_to "Home", home_path %></li>
               <li><%= link_to "About", about_us_path %></li>
@@ -49,6 +56,7 @@
               <li><%= link_to "All Posts", posts_path %></li>
               <% if user_signed_in? %>
               <li><%= link_to "Your favourite posts", favourites_path %></li>
+                <li><%= link_to "Hello #{current_user.full_name.titleize}", edit_user_path(current_user) %></li>
                 <li><%= link_to "Hello #{current_user.full_name.titleize}", edit_user_path(current_user) %></li>
                 <li><%= link_to "Log out", sessions_path, method: :delete %></li>
               <% else %>
@@ -62,15 +70,12 @@
         </div>
       </nav>
 
-      <% if notice %>
-      <div class="alert alert-success"><%= notice %></div>
-      <% elsif alert %>
-      <div class="alert alert-danger"><%= alert %></div>
-      <% end %>
 
 
 <%= yield %>
     </div>
+
+
     <div class="navbar navbar-inverse navbar-fixed-bottom" role="navigation">
      <div class="container">
        <div class="navbar-text pull-left">
