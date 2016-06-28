@@ -1,9 +1,13 @@
-<h1>Fav</h1>
+<div class="container">
 
-<% @favourites.each do |favourite| %>
+  <h1>Fav</h1>
 
-<div>
-<%= link_to favourite.post.title, post_path(favourite.post) %>
+  <% @favourites.each do |favourite| %>
+
+  <div>
+    <%= link_to favourite.post.title, post_path(favourite.post) %>
+  </div>
+
+  <% end %>
+
 </div>
-
-<% end %>

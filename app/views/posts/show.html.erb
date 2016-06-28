@@ -1,36 +1,40 @@
-<h1><%= @post.title %></h1>
-<p><%= @post.body %></p>
-<p><%= @post.created_at %></p>
-<p>Created By: <%= @post.user_full_name.titleize %></p>
-<p>Tags: <%= @post.tags.map{|t| t.name }.join(", ") %></p>
+<div class="container">
 
-<% if can? :edit, @post %>
-<%= link_to "Edit", edit_post_path(@post) %>
-<% end %>
-<% if can? :destroy, @post %>
-<%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure"} %>
-<% end %>
+  <h1><%= @post.title %></h1>
+  <p><%= @post.body %></p>
+  <p><%= @post.created_at %></p>
+  <p>Created By: <%= @post.user_full_name.titleize %></p>
+  <p>Tags: <%= @post.tags.map{|t| t.name }.join(", ") %></p>
+
+  <% if can? :edit, @post %>
+  <%= link_to "Edit", edit_post_path(@post) %>
+  <% end %>
+  <% if can? :destroy, @post %>
+  <%= link_to "Delete", post_path(@post), method: :delete, data: {confirm: "Are you sure"} %>
+  <% end %>
 
 
 
-<% if user_favourite %>
+  <% if user_favourite %>
   <%= link_to "Un-Fave", post_favourite_path(@post, user_favourite), method: :delete %>
-<% else %>
+  <% else %>
   <%= link_to "Favourite", post_favourites_path(@post), method: :post %>
-<% end %>
+  <% end %>
 
 
 
-<div id="comment-form">
-  <%= render "/comments/form", comment: @comment %>
-</div>
+  <div id="comment-form">
+    <%= render "/comments/form", comment: @comment %>
+  </div>
 
-<h2>Comments</h2>
-<div id="comments">
-  <%= render "/comments/comments", comments: @post.comments %>
-</div>
+  <h2>Comments</h2>
+  <div id="comments">
+    <%= render "/comments/comments", comments: @post.comments %>
+  </div>
 
-<!-- Modal -->
-<div class="modal fade" id="edit-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+  <!-- Modal -->
+  <div class="modal fade" id="edit-comment" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+
+  </div>
 
 </div>

@@ -24,7 +24,7 @@ Rails.application.routes.draw do
     delete :destroy, on: :collection
   end
 
-  resources :users, only: [:new, :create, :edit, :update]
+  resources :users, only: [:new, :create, :edit, :update, :delete]
   resources :posts do
 
     resources :favourites, only: [:create, :destroy]

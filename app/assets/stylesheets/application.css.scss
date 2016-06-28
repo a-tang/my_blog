@@ -16,72 +16,70 @@
  *= require_tree .
  *= require_self
  */
- @import "bootstrap-sprockets";
- @import "bootstrap";
-
- // <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
- body {
-   /* this will move the jumbotron down 50px to compensate for the top navigation */
-   margin-top: 45px;
-   margin-bottom: 300px;
- }
- h1, h2 {
-   padding-top: -50px;
-   margin-top: 50px;
- }
-
- .jumbotron {
-  margin-bottom: 0px;
- }
-
- 
- .company-name {
-   margin-top: 10px;
-   margin-left: 10px;
-   color: white;
-   font-size: 20px;
- }
- .logo-image {
-   /*width: 10px;*/
-   /*height: 10px;*/
- }
- .bg-orange {
-   background-color: teal;
- }
- .logo {
-   margin-top: 10px;
-   font-size: 2em;
- }
- .img-circle {
-   width: 200px;
-   height: 200px;
-   margin-bottom: 15px;
-   border: 10px darkgrey solid;
- }
- .bg-grey {
-   background-color: grey;
- }
-
- #map {
-   width: 100%;
-   height: 400px;
-   background-color: pink;
-   padding-bottom: 500px;
- }
-
- table {
- border-collapse: collapse;
- width: 100%;
- }
-
- th, td {
-     text-align: left;
-     padding: 8px;
- }
-
-
- tr:nth-child(even){background-color: #f2f2f2}
- /*.site-columns {
-
- }*/
+ // @import "bootstrap-sprockets";
+ // @import "bootstrap";
+ //
+ // body {
+ //   /* this will move the jumbotron down 50px to compensate for the top navigation */
+ //   margin-top: 45px;
+ //   margin-bottom: 300px;
+ // }
+ // h1, h2 {
+ //   padding-top: -50px;
+ //   margin-top: 50px;
+ // }
+ //
+ // .jumbotron {
+ //  margin-bottom: 0px;
+ // }
+ //
+ //
+ // .company-name {
+ //   margin-top: 10px;
+ //   margin-left: 10px;
+ //   color: white;
+ //   font-size: 20px;
+ // }
+ // .logo-image {
+ //   /*width: 10px;*/
+ //   /*height: 10px;*/
+ // }
+ // .bg-orange {
+ //   background-color: teal;
+ // }
+ // .logo {
+ //   margin-top: 10px;
+ //   font-size: 2em;
+ // }
+ // .img-circle {
+ //   width: 200px;
+ //   height: 200px;
+ //   margin-bottom: 15px;
+ //   border: 10px darkgrey solid;
+ // }
+ // .bg-grey {
+ //   background-color: grey;
+ // }
+ //
+ // #map {
+ //   width: 100%;
+ //   height: 400px;
+ //   background-color: pink;
+ //   padding-bottom: 500px;
+ // }
+ //
+ // table {
+ // border-collapse: collapse;
+ // width: 100%;
+ // }
+ //
+ // th, td {
+ //     text-align: left;
+ //     padding: 8px;
+ // }
+ //
+ //
+ // tr:nth-child(even){background-color: #f2f2f2}
+ // /*.site-columns {
+ //
+ // }*/

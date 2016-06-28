@@ -1,7 +1,147 @@
 // customize the primary color to codecore red
-$brand-primary: #cc0000;
+$brand-primary: teal;
 // turn buttons square
-$border-radius-base: 0;
+$border-radius-base: 5px;
 
 @import "bootstrap-sprockets";
-@import "bootstrap"
+@import "bootstrap";
+
+body {
+  /* this will move the jumbotron down 50px to compensate for the top navigation */
+  margin-top: 45px;
+  padding-bottom: 150px;
+  margin: 0 auto;
+}
+h1, h2 {
+  padding-top: -50px;
+  margin-top: 50px;
+}
+
+.jumbotron {
+ margin-bottom: 0px;
+}
+
+.break {
+    text-align:center;
+    font-weight:bold;
+    background:rgba(255,0,0, 0.5);
+   //  margin-left:-100%;
+   //  margin-right:-100%;
+    width: 100%;
+}
+
+.company-name {
+  margin-top: 10px;
+  margin-left: 10px;
+  color: white;
+  font-size: 20px;
+}
+.logo-image {
+  /*width: 10px;*/
+  /*height: 10px;*/
+}
+.bg-orange {
+  background-color: teal;
+}
+.logo {
+  margin-top: 10px;
+  font-size: 2em;
+}
+.img-circle {
+  width: 200px;
+  height: 200px;
+  margin-bottom: 15px;
+  border: 10px darkgrey solid;
+}
+.bg-grey {
+  background-color: grey;
+}
+
+#map {
+  width: 100%;
+  height: 400px;
+  background-color: pink;
+  padding-bottom: 500px;
+}
+
+table {
+border-collapse: collapse;
+width: 100%;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+
+tr:nth-child(even){background-color: #f2f2f2};
+/*.site-columns {
+
+}*/
+.navbar.navbar-inverse.navbar-fixed-bottom {
+  height: 50px;
+}
+
+.navbar.navbar-fixed-top {
+  position: relative;
+  margin-bottom: 0px;
+}
+/* Outer */
+.popup {
+    width:100%;
+    height:100%;
+    display:none;
+    position:fixed;
+    top:0px;
+    left:0px;
+    background:rgba(0,0,0,0.75);
+    z-index: 1;
+}
+
+.alert {
+  margin-bottom: 0px;
+}
+
+/* Inner */
+.popup-inner {
+    max-width:700px;
+    width:90%;
+    padding:40px;
+    position:absolute;
+    top:50%;
+    left:50%;
+    -webkit-transform:translate(-50%, -50%);
+    transform:translate(-50%, -50%);
+    box-shadow:0px 2px 6px rgba(0,0,0,1);
+    border-radius:3px;
+    background:#fff;
+}
+
+/* Close Button */
+.popup-close {
+    width:30px;
+    height:30px;
+    padding-top:4px;
+    display:inline-block;
+    position:absolute;
+    top:0px;
+    right:0px;
+    transition:ease 0.25s all;
+    -webkit-transform:translate(50%, -50%);
+    transform:translate(50%, -50%);
+    border-radius:1000px;
+    background:rgba(0,0,0,0.8);
+    font-family:Arial, Sans-Serif;
+    font-size:20px;
+    text-align:center;
+    line-height:100%;
+    color:#fff;
+}
+
+.popup-close:hover {
+    -webkit-transform:translate(50%, -50%) rotate(180deg);
+    transform:translate(50%, -50%) rotate(180deg);
+    background:rgba(0,0,0,1);
+    text-decoration:none;
+}

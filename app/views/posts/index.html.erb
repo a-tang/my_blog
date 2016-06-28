@@ -1,27 +1,30 @@
-<h1>All Posts</h1>
+<div class="container">
 
-<%= form_tag(posts_path, :method => 'get', id: "search-form") do %>
-<p>
-  <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
-  <%= submit_tag "Search" %>
-</p>
-<% end %>
-<br>
-<% @posts.each do |post| %>
+  <h1>All Posts</h1>
 
-<div>
-  <%= link_to post.title, post_path(post) %>
-</div>
+  <%= form_tag(posts_path, :method => 'get', id: "search-form") do %>
+  <p>
+    <%= text_field_tag :search, params[:search], placeholder: "Search Posts" %>
+    <%= submit_tag "Search" %>
+  </p>
+  <% end %>
+  <br>
+  <% @posts.each do |post| %>
 
-<% end %>
-<hr>
-<%= paginate @posts %>
-<%= page_entries_info @posts %>
+  <div>
+    <%= link_to post.title, post_path(post) %>
+  </div>
+
+  <% end %>
+  <hr>
+  <%= paginate @posts %>
+  <%= page_entries_info @posts %>
 
 
-<%# if @posts.present? %>
+  <%# if @posts.present? %>
   <%#= render @posts %>
-<%# else %>
+  <%# else %>
   <!-- <p>There are no posts containing the term(s) <%#= params[:search] %>.</p> -->
 
-<%# end %>
+  <%# end %>
+</div>

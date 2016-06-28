@@ -1,0 +1,98 @@
+
+  <!-- bootstrap navbar -->
+  <nav class="navbar navbar-fixed-top navbar-inverse">
+    <div class="container">
+      <!-- <div class="navbar-header"> -->
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="sr-only">Toggle navigation</span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <!-- logo and company name -->
+      </button>
+
+      <a class="navbar-left" href="#">
+        <span class="glyphicon glyphicon-fire logo">
+          <a href="#" class="navbar-left company-name">BlogAT</a>
+          <!--img class="logo-image" src="images/logo.png"-->
+          <div class="navbar-collapse collapse navbar-right">
+            <ul class="nav navbar-nav navbar text-center">
+              <!-- navigation items -->
+              <li><%= link_to "Home", home_path %></li>
+              <li><%= link_to "About", about_us_path %></li>
+
+
+              <% if user_signed_in? %>
+              <li class="dropdown">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello <%= "#{current_user.full_name.titleize}"%><span class="caret"></span></a>
+                <ul class="dropdown-menu">
+                  <li><a href="<%= new_post_path %>">Create a post</a></li>
+                  <li><a href="<%= posts_path %>">View all posts</a></li>
+                  <li><a href="<%= favourites_path %>">Your favourite posts</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><a href="<%= edit_user_path(current_user) %>">Edit profile</a></li>
+                  <li role="separator" class="divider"></li>
+                  <li><%= link_to "Log out", sessions_path, method: :delete %></li>
+                </ul>
+              </li>
+
+              <% else %>
+
+              <li><a href="<%= new_user_path %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <li><a data-popup-open="popup-1" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+              <% end %>
+            </ul>
+          </a>
+        </div>
+      </div>
+    </nav>
+
+    <% if notice %>
+    <div class="alert alert-success"><%= notice %></div>
+    <% elsif alert %>
+    <div class="alert alert-danger"><%= alert %></div>
+    <% end %>
+
+
+    <div class="popup" data-popup="popup-1">
+      <div class="popup-inner">
+        <h2><center>Sign In</center></h2>
+        <div class="col-sm-6 sign_in_modal">
+
+          <%#= link_to sign_in_with_facebook_path, id: "sign_in", class:"btn btn-block btn-social btn-facebook" do %>
+          <span class="fa fa-facebook"></span><span>Sign In With Facebook</span>
+          <%# end %>
+          <%= link_to sign_in_with_twitter_path, class:"btn btn-block btn-social btn-twitter" do %>
+          <span class="fa fa-twitter"></span><span>Sign In With Twitter</span>
+          <% end %>
+
+          <%#= link_to sign_in_with_google_path, id: "sign_in", class:"btn btn-block btn-social btn-google" do %>
+          <span class="fa fa-google"></span><span>Sign In With Google</span>
+          <% #end %>
+
+          <br>
+          <div class="form-group row_modal">
+            <p><a data-popup-close="popup-1" href="#">Close</a></p>
+          </div>
+        </div>
+
+
+        <div class="col-sm-6">
+          <%= simple_form_for :session, {url: sessions_path } do |f| %>
+          <%= f.input :email, label: false, placeholder: 'Email', required: true, input_html: { class: "form-control-modal"} %>
+          <%= f.input :password, label: false, placeholder: 'Password', required: true, input_html: { class: "form-control-modal"} %>
+          <%= f.submit class: "btn btn-primary" %>
+          <% end %>
+          <br>
+          <div class="form-group row_modal">
+            <%= link_to "Forgot password?", new_password_reset_path %>
+          </div>
+          <div class="form-group row_modal">
+            Need an account? <%= link_to "Sign Up", new_user_path %>
+          </div>
+        </div>
+        <div>
+          <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
+        </div>
+      </div>
+    </div>
