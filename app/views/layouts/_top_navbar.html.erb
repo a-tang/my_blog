@@ -11,9 +11,9 @@
         <!-- logo and company name -->
       </button>
 
-      <a class="navbar-left" href="#">
+      <a class="navbar-left" href="<%= home_path %>">
         <span class="glyphicon glyphicon-fire logo">
-          <a href="#" class="navbar-left company-name">BlogAT</a>
+          <a href="<%= home_path %>" class="navbar-left company-name">BlogAT</a>
           <!--img class="logo-image" src="images/logo.png"-->
           <div class="navbar-collapse collapse navbar-right">
             <ul class="nav navbar-nav navbar text-center">
@@ -47,28 +47,18 @@
       </div>
     </nav>
 
-    <% if notice %>
-    <div class="alert alert-success"><%= notice %></div>
-    <% elsif alert %>
-    <div class="alert alert-danger"><%= alert %></div>
-    <% end %>
+
 
 
     <div class="popup" data-popup="popup-1">
       <div class="popup-inner">
         <h2><center>Sign In</center></h2>
         <div class="col-sm-6 sign_in_modal">
-
-          <%#= link_to sign_in_with_facebook_path, id: "sign_in", class:"btn btn-block btn-social btn-facebook" do %>
           <span class="fa fa-facebook"></span><span>Sign In With Facebook</span>
-          <%# end %>
           <%= link_to sign_in_with_twitter_path, class:"btn btn-block btn-social btn-twitter" do %>
           <span class="fa fa-twitter"></span><span>Sign In With Twitter</span>
           <% end %>
-
-          <%#= link_to sign_in_with_google_path, id: "sign_in", class:"btn btn-block btn-social btn-google" do %>
           <span class="fa fa-google"></span><span>Sign In With Google</span>
-          <% #end %>
 
           <br>
           <div class="form-group row_modal">
