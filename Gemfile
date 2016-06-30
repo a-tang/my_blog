@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem "omniauth-google-oauth2"
+gem 'omniauth-facebook'
+gem "rails_12factor", group: :production
 gem 'omniauth-twitter'
 gem 'jquery-turbolinks'
 gem 'chosen-rails'

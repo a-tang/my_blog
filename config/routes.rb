@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
+  get "/auth/facebook", as: :sign_in_with_facebook
+  get "/auth/facebook/callback" => "callbacks#facebook"
+  get "/auth/google_oauth2", as: :sign_in_with_google
+  get "/auth/google_oauth2/callback" => "callbacks#google_oauth2"
   get "/auth/twitter", as: :sign_in_with_twitter
   get "/auth/twitter/callback" => "callbacks#twitter"
   scope module: 'users' do

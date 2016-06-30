@@ -54,11 +54,17 @@
       <div class="popup-inner">
         <h2><center>Sign In</center></h2>
         <div class="col-sm-6 sign_in_modal">
-          <span class="fa fa-facebook"></span><span>Sign In With Facebook</span>
-          <%= link_to sign_in_with_twitter_path, class:"btn btn-block btn-social btn-twitter" do %>
-          <span class="fa fa-twitter"></span><span>Sign In With Twitter</span>
-          <% end %>
-          <span class="fa fa-google"></span><span>Sign In With Google</span>
+
+        <%= link_to sign_in_with_facebook_path, id: "sign_in", class:"btn btn-block btn-social btn-facebook" do %>
+                <span class="fa fa-facebook"></span><span>Sign In With Facebook</span>
+                <% end %>
+                <%= link_to sign_in_with_twitter_path, class:"btn btn-block btn-social btn-twitter" do %>
+                <span class="fa fa-twitter"></span><span>Sign In With Twitter</span>
+                <% end %>
+
+                <%= link_to sign_in_with_google_path, id: "sign_in", class:"btn btn-block btn-social btn-google" do %>
+                <span class="fa fa-google"></span><span>Sign In With Google</span>
+                <% end %>
 
           <br>
           <div class="form-group row_modal">
