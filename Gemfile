@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'font-awesome-sass', '~> 4.5.0'
 gem "omniauth-google-oauth2"
 gem 'omniauth-facebook'
 gem "rails_12factor", group: :production

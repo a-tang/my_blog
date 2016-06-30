@@ -3,11 +3,9 @@
 <head>
   <title>MyBlog</title>
   <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.1/css/font-awesome.min.css">
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
-  <!-- Latest compiled and minified CSS -->
-
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 </head>
 
 <body data-spy="scroll" data-target=".navbar">
@@ -21,6 +19,8 @@
       <%= yield %>
 
     <%= render 'layouts/footer' %>
+
+    <%= render "/layouts/analytics" if Rails.env.production? %>
 
   </body>
   </html>

@@ -5,6 +5,8 @@ $border-radius-base: 5px;
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+@import "font-awesome-sprockets";
+@import "font-awesome";
 
 body {
   /* this will move the jumbotron down 50px to compensate for the top navigation */
