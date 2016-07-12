@@ -5,6 +5,9 @@
   <p><%= @post.created_at %></p>
   <p>Created By: <%= @post.user_full_name.titleize %></p>
   <p>Tags: <%= @post.tags.map{|t| t.name }.join(", ") %></p>
+  <% if @post.image.present? %>
+    <%= image_tag @post.image.url, class: "full-width" %>
+  <% end %>
 
   <% if can? :edit, @post %>
   <%= link_to "Edit", edit_post_path(@post) %>

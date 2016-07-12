@@ -1,7 +1,9 @@
 class Post < ActiveRecord::Base
-  has_many :comments, dependent: :nullify
+
   belongs_to :category
   belongs_to :user
+
+  has_many :comments, dependent: :nullify
   has_many :favourites, dependent: :destroy
   has_many :users, through: :favourites
   has_many :taggings, dependent: :destroy
@@ -9,6 +11,8 @@ class Post < ActiveRecord::Base
 
   validates(:title, {presence: true, uniqueness: {message: "must be unique!"}})
 
+  mount_uploader :image, ImageUploader
+  
   def self.search(search)
     where("title ILIKE ? OR body ILIKE ?", "%#{search}%", "%#{search}%")
   end

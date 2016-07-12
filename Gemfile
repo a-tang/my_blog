@@ -1,5 +1,8 @@
 source 'https://rubygems.org'
 
+gem 'carrierwave'
+gem 'mini_magick'
+gem 'ckeditor'
 gem 'font-awesome-sass', '~> 4.5.0'
 gem "omniauth-google-oauth2"
 gem 'omniauth-facebook'

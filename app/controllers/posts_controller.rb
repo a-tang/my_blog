@@ -68,7 +68,7 @@ before_action :find_post, only: [:show, :edit, :update, :destroy]
 
 
   def post_params
-    params.require(:post).permit([:title, :body, :category_id, {tag_ids: []}])
+    params.require(:post).permit([:title, :body, :image, :category_id, {tag_ids: []}])
   end
 
   def user_favourite
