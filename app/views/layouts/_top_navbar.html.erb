@@ -38,7 +38,7 @@
 
               <% else %>
 
-              <li><a href="<%= new_user_path %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li>
+              <!-- <li><a href="<%= new_user_path %>"><span class="glyphicon glyphicon-user"></span> Sign Up</a></li> -->
               <li><a data-popup-open="popup-1" href="#"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
               <% end %>
             </ul>
@@ -53,7 +53,7 @@
     <div class="popup" data-popup="popup-1">
       <div class="popup-inner">
         <h2><center>Sign In</center></h2>
-        <div class="col-sm-6 sign_in_modal">
+        <div class="sign-in-modal">
 
         <%= link_to sign_in_with_facebook_path, id: "sign_in", class:"btn btn-block btn-social btn-facebook" do %>
                 <span class="fa fa-facebook"></span><span>Sign In With Facebook</span>
@@ -73,20 +73,20 @@
         </div>
 
 
-        <div class="col-sm-6">
-          <%= simple_form_for :session, {url: sessions_path } do |f| %>
-          <%= f.input :email, label: false, placeholder: 'Email', required: true, input_html: { class: "form-control-modal"} %>
-          <%= f.input :password, label: false, placeholder: 'Password', required: true, input_html: { class: "form-control-modal"} %>
-          <%= f.submit class: "btn btn-primary" %>
-          <% end %>
+        <!-- <div class="col-sm-6">
+          <%#= simple_form_for :session, {url: sessions_path } do |f| %>
+          <%#= f.input :email, label: false, placeholder: 'Email', required: true, input_html: { class: "form-control-modal"} %>
+          <%#= f.input :password, label: false, placeholder: 'Password', required: true, input_html: { class: "form-control-modal"} %>
+          <%#= f.submit class: "btn btn-primary" %>
+          <%# end %>
           <br>
           <div class="form-group row_modal">
-            <%= link_to "Forgot password?", new_password_reset_path %>
+            <%#= link_to "Forgot password?", new_password_reset_path %>
           </div>
           <div class="form-group row_modal">
-            Need an account? <%= link_to "Sign Up", new_user_path %>
+            Need an account? <%#= link_to "Sign Up", new_user_path %>
           </div>
-        </div>
+        </div> -->
         <div>
           <a class="popup-close" data-popup-close="popup-1" href="#">x</a>
         </div>
