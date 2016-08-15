@@ -20,14 +20,14 @@
               <!-- navigation items -->
               <li><%= link_to "Home", home_path %></li>
               <li><%= link_to "About", about_us_path %></li>
-
+              <li><a href="<%= posts_path %>">View all posts</a></li>
 
               <% if user_signed_in? %>
               <li class="dropdown">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Hello <%= "#{current_user.full_name.titleize}"%><span class="caret"></span></a>
                 <ul class="dropdown-menu">
                   <li><a href="<%= new_post_path %>">Create a post</a></li>
-                  <li><a href="<%= posts_path %>">View all posts</a></li>
+
                   <li><a href="<%= favourites_path %>">Your favourite posts</a></li>
                   <li role="separator" class="divider"></li>
                   <li><a href="<%= edit_user_path(current_user) %>">Edit profile</a></li>

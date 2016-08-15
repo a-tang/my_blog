@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'materialize-sass'
 gem "fog"
 gem 'carrierwave'
 gem 'mini_magick'

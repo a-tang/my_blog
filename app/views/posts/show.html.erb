@@ -1,5 +1,12 @@
 <div class="container">
 
+  <nav>
+    <div class="col s12">
+      <a <%= link_to "Home", home_path %></a>
+      >
+      <a <%= link_to "All Posts", posts_path %></a>
+  </div>
+</nav>
   <h1><%= @post.title %></h1>
   <p><%= @post.body.html_safe %></p>
   <p><%= @post.created_at %></p>
