@@ -1,50 +1,41 @@
 <div class="container">
-
-<h1>Create User</h1>
-
-<%= render "user_errors" %>
-
-<%= form_for @user, :html => {class: "form-horizontal"} do |f| %>
-  <div class="form-group row">
-    <%= f.label :first_name, class: "col-md-2 control-label" %>
-    <div class="col-md-8">
-      <%= f.text_field :first_name, class: "form-control" %>
+    <h1>Create User</h1>
+    <%= render "user_errors" %>
+    <%= form_for @user, :html => {class: "form-horizontal"} do |f| %>
+    <div class="form-group row">
+        <%= f.label :first_name, class: "col-md-2 control-label" %>
+        <div class="col-md-8">
+            <%= f.text_field :first_name, class: "form-control" %>
+        </div>
     </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :last_name, class: "col-md-2 control-label" %>
-    <div class="col-md-8">
-      <%= f.text_field :last_name, class: "form-control" %>
+    <div class="form-group row">
+        <%= f.label :last_name, class: "col-md-2 control-label" %>
+        <div class="col-md-8">
+            <%= f.text_field :last_name, class: "form-control" %>
+        </div>
     </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :email, class: "col-md-2 control-label" %>
-    <div class="col-md-8">
-      <%= f.email_field :email, class: "form-control" %>
+    <div class="form-group row">
+        <%= f.label :email, class: "col-md-2 control-label" %>
+        <div class="col-md-8">
+            <%= f.email_field :email, class: "form-control" %>
+        </div>
     </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :password, class: "col-md-2 control-label" %>
-    <div class="col-md-8">
-      <%= f.password_field :password, class: "form-control" %>
+    <div class="form-group row">
+        <%= f.label :password, class: "col-md-2 control-label" %>
+        <div class="col-md-8">
+            <%= f.password_field :password, class: "form-control" %>
+        </div>
     </div>
-  </div>
-
-  <div class="form-group row">
-    <%= f.label :password_confirmation, class: "col-md-2 control-label" %>
-    <div class="col-md-8">
-      <%= f.password_field :password_confirmation, class: "form-control" %>
+    <div class="form-group row">
+        <%= f.label :password_confirmation, class: "col-md-2 control-label" %>
+        <div class="col-md-8">
+            <%= f.password_field :password_confirmation, class: "form-control" %>
+        </div>
     </div>
-  </div>
-
-  <div class="form-group row">
-      <div class="col-md-12">
-      <%= f.submit "Create User", class: "btn btn-primary col-md-offset-2" %>
+    <div class="form-group row">
+        <div class="col-md-12">
+            <%= f.submit "Create User", class: "btn btn-primary col-md-offset-2" %>
+        </div>
     </div>
-  </div>
-<% end  %>
-
+    <% end %>
 </div>

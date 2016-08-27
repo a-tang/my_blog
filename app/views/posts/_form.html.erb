@@ -1,16 +1,15 @@
-  <% if @post.errors.any? %>
-  <ul>
-    <% @post.errors.full_messages.each do |msg| %>
-    <li><%= msg %></li>
-    <% end %>
-  </ul>
-  <% end %>
-
-  <%= simple_form_for @post do |f| %>
+<% if @post.errors.any? %>
+    <ul>
+        <% @post.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+        <% end %>
+    </ul>
+<% end %>
+<%= simple_form_for @post do |f| %>
     <%= f.input :title %>
     <%= f.input :body, :as => :ckeditor, :input_html => { :ckeditor => {:toolbar => 'Full'} } %>
     <%= f.association :category %>
     <%= f.association :tags, input_html: {class: "chosen-select"} %>
     <%= f.input :image %>
     <%= f.submit class: "btn btn-primary" %>
-  <% end %>
+<% end %>

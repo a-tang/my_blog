@@ -1,5 +1,6 @@
 source 'https://rubygems.org'
 
+gem 'puma'
 gem 'materialize-sass'
 gem "fog"
 gem 'carrierwave'

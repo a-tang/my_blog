@@ -1,4 +1,4 @@
 <%= simple_form_for [@post, comment], remote: true do |f|  %>
-  <%= f.input :body, label: false %>
-  <%= f.submit data: {disable_with: "submitting..."}, class: "btn btn-primary" %>
+    <%= f.input :body, label: false %>
+    <%= f.submit data: {disable_with: "submitting..."}, class: "btn btn-primary" %>
 <% end %>

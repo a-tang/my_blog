@@ -1,126 +1,126 @@
 class User < ActiveRecord::Base
-  has_secure_password
-  has_many :posts, dependent: :nullify
-  has_many :comments, dependent: :nullify
-  has_many :favourites, dependent: :destroy
+    has_secure_password
 
-  validates :first_name, presence: true
-  validates :last_name, presence: true, unless: :with_oauth?
-  validates :email, presence: true, uniqueness: true, unless: :with_oauth?
+    has_many :posts, dependent: :nullify
+    has_many :comments, dependent: :nullify
+    has_many :favourites, dependent: :destroy
 
-  serialize :twitter_raw_data, Hash
+    validates :first_name, presence: true
+    validates :last_name, presence: true, unless: :with_oauth?
+    validates :email, presence: true, uniqueness: true, unless: :with_oauth?
 
-  VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
+    serialize :twitter_raw_data, Hash
 
-  validates :email, uniqueness: true, presence: true, format: VALID_EMAIL_REGEX, unless: :with_oauth?
+    VALID_EMAIL_REGEX = /\A([\w+\-]\.?)+@[a-z\d\-]+(\.[a-z]+)*\.[a-z]+\z/i
 
-  def with_oauth?
-    provider.present? && uid.present?
-  end
+    validates :email, uniqueness: true, presence: true, format: VALID_EMAIL_REGEX, unless: :with_oauth?
 
-  def self.find_or_create_with_twitter(omniauth_data)
-    user = User.where(provider: "twitter", uid: omniauth_data["uid"]).first
-    unless user
-      full_name = omniauth_data["info"]["name"]
-      user = User.create!(first_name:      extract_first_name(full_name),
-      last_name:        extract_last_name(full_name),
-      provider:         "twitter",
-      uid:              omniauth_data["uid"],
-      password:         SecureRandom.hex(16),
-      twitter_token:    omniauth_data["credentials"]["token"],
-      twitter_secret:   omniauth_data["credentials"]["secret"],
-      twitter_raw_data: omniauth_data)
+    def with_oauth?
+        provider.present? && uid.present?
     end
-    user
-  end
 
-  def self.find_or_create_with_facebook(omniauth_data)
-    user = User.where(provider: "facebook", uid: omniauth_data["uid"]).first
-    unless user
-      full_name = omniauth_data["info"]["name"]
-      user = User.create!(first_name:      extract_first_name(full_name),
-      last_name:        extract_last_name(full_name),
-      provider:         "facebook",
-      uid:              omniauth_data["uid"],
-      password:         SecureRandom.hex(16))
-
+    def self.find_or_create_with_twitter(omniauth_data)
+        user = User.where(provider: "twitter", uid: omniauth_data["uid"]).first
+        unless user
+            full_name = omniauth_data["info"]["name"]
+            user = User.create!(first_name:      extract_first_name(full_name),
+            last_name:        extract_last_name(full_name),
+            provider:         "twitter",
+            uid:              omniauth_data["uid"],
+            password:         SecureRandom.hex(16),
+            twitter_token:    omniauth_data["credentials"]["token"],
+            twitter_secret:   omniauth_data["credentials"]["secret"],
+            twitter_raw_data: omniauth_data)
+        end
+        user
     end
-    user
-  end
 
-  def self.find_or_create_with_google_oauth2(omniauth_data)
-    user = User.where(provider: ":google_oauth2", uid: omniauth_data["uid"]).first
-    unless user
-      full_name = omniauth_data["info"]["name"]
-      user = User.create!(first_name:      extract_first_name(full_name),
-      last_name:        extract_last_name(full_name),
-      provider:         ":google_oauth2",
-      uid:              omniauth_data["uid"],
-      password:         SecureRandom.hex(16))
-
+    def self.find_or_create_with_facebook(omniauth_data)
+        user = User.where(provider: "facebook", uid: omniauth_data["uid"]).first
+        unless user
+            full_name = omniauth_data["info"]["name"]
+            user = User.create!(first_name:      extract_first_name(full_name),
+            last_name:        extract_last_name(full_name),
+            provider:         "facebook",
+            uid:              omniauth_data["uid"],
+            password:         SecureRandom.hex(16))
+        end
+        user
     end
-    user
-  end
 
-  def from_omniauth?
-    uid.present? && provider.present?
-  end
+    def self.find_or_create_with_google_oauth2(omniauth_data)
+        user = User.where(provider: ":google_oauth2", uid: omniauth_data["uid"]).first
+        unless user
+            full_name = omniauth_data["info"]["name"]
+            user = User.create!(first_name:      extract_first_name(full_name),
+            last_name:        extract_last_name(full_name),
+            provider:         ":google_oauth2",
+            uid:              omniauth_data["uid"],
+            password:         SecureRandom.hex(16))
+        end
+        user
+    end
 
-  def full_name
-    "#{first_name} #{last_name}"
-  end
+    def from_omniauth?
+        uid.present? && provider.present?
+    end
 
-  def user_full_name
-    user ? user.full_name : ""
-  end
+    def full_name
+        "#{first_name} #{last_name}"
+    end
 
-  def generate_password_reset_data
-    generate_password_reset_token
-    self.password_reset_requested_at = Time.now
-    save
-  end
+    def user_full_name
+        user ? user.full_name : ""
+    end
 
-  def password_reset_expired?
-    password_reset_requested_at <= 60.minutes.ago
-  end
+    def generate_password_reset_data
+        generate_password_reset_token
+        self.password_reset_requested_at = Time.now
+        save
+    end
 
-  def generate_account_verification_data
-    generate_account_verification_token
-    self.account_verification_requested_at = Time.now
-    save
-  end
+    def password_reset_expired?
+        password_reset_requested_at <= 60.minutes.ago
+    end
 
-  def generate_account_verification_token
-    begin
-      self.account_verification_token = SecureRandom.hex(32)
-    end while User.exists?(account_verification_token: self.account_verification_token)
-  end
+    def generate_account_verification_data
+        generate_account_verification_token
+        self.account_verification_requested_at = Time.now
+        save
+    end
 
-  def generate_password_reset_token
-    begin
-      self.password_reset_token = SecureRandom.hex(32)
-    end while User.exists?(password_reset_token: self.password_reset_token)
-  end
+    def generate_account_verification_token
+        begin
+            self.account_verification_token = SecureRandom.hex(32)
+        end while User.exists?(account_verification_token: self.account_verification_token)
+    end
 
-  def titleize_title
-    self.title = title.titleize
-  end
+    def generate_password_reset_token
+        begin
+            self.password_reset_token = SecureRandom.hex(32)
+        end while User.exists?(password_reset_token: self.password_reset_token)
+    end
+
+    def titleize_title
+        self.title = title.titleize
+    end
 
   private
 
-  def self.extract_first_name(full_name)
-    if full_name.rindex(" ")
-      full_name[0..full_name.rindex(" ")-1]
-    else
-      full_name
+    def self.extract_first_name(full_name)
+        if full_name.rindex(" ")
+            full_name[0..full_name.rindex(" ")-1]
+        else
+            full_name
+        end
     end
-  end
 
-  def self.extract_last_name(full_name)
-    if full_name.rindex(" ")
-      full_name.split.last
-    else
-      ""
+    def self.extract_last_name(full_name)
+        if full_name.rindex(" ")
+            full_name.split.last
+        else
+            ""
+        end
     end
-  end
+
 end
