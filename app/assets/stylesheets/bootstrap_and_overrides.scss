@@ -9,7 +9,6 @@ $border-radius-base: 5px;
 @import "font-awesome";
 
 body {
-  /* this will move the jumbotron down 50px to compensate for the top navigation */
   margin-top: 45px;
   padding-bottom: 150px;
   margin: 0 auto;
@@ -88,6 +87,7 @@ tr:nth-child(even){background-color: #f2f2f2};
 .navbar.navbar-fixed-top {
   position: relative;
   margin-bottom: 0px;
+  z-index: 1;
 }
 /* Outer */
 .popup {
@@ -103,6 +103,22 @@ tr:nth-child(even){background-color: #f2f2f2};
 
 .alert {
   margin-bottom: 0px;
+}
+#notice_wrapper {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    z-index: 999;
+    background-color:rgba(135, 216, 211, 0.85);
+}
+.alert, .notice {
+    padding: 1.75rem 0;
+    text-align: center;
+    margin: 0;
+    font-size: 1.3rem;
+    font-weight: 700;
+    letter-spacing: 2px;
+    color: #ffffff
 }
 
 /* Inner */

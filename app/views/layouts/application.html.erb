@@ -11,12 +11,16 @@
 <body data-spy="scroll" data-target=".navbar">
     <%= render 'layouts/top_navbar' %>
     <% if notice %>
-        <div class="alert alert-success"><%= notice %></div>
-        <% elsif alert %>
-        <div class="alert alert-danger"><%= alert %></div>
+    <div id="notice_wrapper">
+        <div class="notice"><%= notice %></div>
+    </div>
+    <% elsif alert %>
+    <div id="notice_wrapper">
+        <div class="notice"><%= alert %></div>
+    </div>
     <% end %>
     <%= yield %>
     <%= render 'layouts/footer' %>
     <%= render "/layouts/analytics" if Rails.env.production? %>
-  </body>
-  </html>
+</body>
+</html>
